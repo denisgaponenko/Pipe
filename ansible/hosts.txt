@@ -1,0 +1,7 @@
+[prod_servers]
+linux1 ansible_host=158.160.2.219 owner=Kirill
+linux2 ansible_host=84.201.158.218 owner=Dmitri
+#linux3 ansible_host=84.252.138.13 owner=Vlad
+
+[ALL_LINUX:children]
+prod_servers

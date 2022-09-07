@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - name: denis
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQD76GKpAul75XZteuS3YIDyl2vvjZ0MxZjmDnkRqUb+/w8EQFuV8YwfrJlv8i0eCCg3JfFdUPtDJ+cIeZYxONlxUz4gACpSGsKWan1pQ24Udmr2ae3UUoDAWcrf6hNp98JZNRrz16p+XDTuy+FfA9WyK9qzS1XguA1UNiqDYvJSqs3gqiEtSa2CSwg0S5bGsjMHhYb//xTQfNLefNgNSXDx42ZpEjPHDpeba1tvhEViiSu/kUG7AL0rPAK0mBIibNf0d7rLKppVcDIieRzMuFdM8tIUNl7Xl0EWkZUULAVDFzXfjfrIp+JWGpXIJwBWq0khsqjwR2nFI9G6lhPyrGL7unKYcTOkYOIlXh0j2kskaMfVhKZewuxmicycf26wrlNHsDBL6mJuYIXP3ZN1O/1bBsTZBY9tSF3KFq5rdDTp7nFXSz3Zd3ufkuzSLiOqnWDXcE3ZvgzI2vpnBNCxgqjeZ97AiJdXLpHNsvcvRyccVKW+Mg23UfSgFCB9wEVAZ50= denis@Heu3BecTHblu

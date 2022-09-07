@@ -1,0 +1,29 @@
+---
+# tasks file for WordPress
+  - name: Install Apache2 
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_os_family == "Debian" 
+
+  - name: Generate INDEX.HTML file
+    template: 
+       src=index.j2
+       dest={{ destin_folder }}/index.html
+       mode=0555
+    notify: Restart apache2    
+  
+  - name: Copy MyHomePage to Servers
+    copy:
+       src={{ item }}
+       dest={{ destin_folder }}
+       mode=0555
+    loop:
+       "{{ lookup('file','/home/denis/ansible/roles/WordPress/files/wp/').split('\n')  }}"
+    notify: Restart apache2
+ 
+  - name: Start Service Apache2 and enable
+    service:
+       name=apache2
+       state=started
+       enabled=yes

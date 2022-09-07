@@ -1,0 +1,25 @@
+---
+- name: Ansible Error
+  hosts: all
+  any_errors_fatal: true
+  become: yes
+
+  tasks:
+  - name: Number 1
+    apt:
+     name=treee
+     state=latest
+    ignore_errors: yes
+
+  - name: Number 2
+    shell: cat /home/denis/myfile.txt
+    register: results
+#    failed_when: results.rc == 0
+#    failed_when: "'HiMen' in results_stdout"
+
+  - debug:
+     var: results
+
+  - name: Number 3
+    shell: echo HiWomen
+    

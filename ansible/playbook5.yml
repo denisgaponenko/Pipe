@@ -1,0 +1,47 @@
+---
+- name: Install Apache2
+  hosts: all
+  become: yes
+ 
+  vars:
+    source_folder: ./MyWebSite
+    destin_folder: /var/www/html
+
+  tasks:
+  - name: Install Apache2
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_os_family == "Debian" 
+
+  - name: Generate INDEX.HTML file
+    template: 
+       src={{ source_folder }}/index.j2
+       dest={{ destin_folder }}/index.html
+       mode=0555
+    notify: Restart apache2    
+  
+  - name: Copy MyHomePage to Servers
+    copy:
+       src={{ source_folder }}/{{ item }}
+       dest={{ destin_folder }}
+       mode=0555
+#    with_fileglob: "{{ source_folder }}/*.*"
+    loop:
+       - "kolopo1.png"
+       - "kolopo2.png"
+       - "kolopo3.png"
+       - "kolopo4.png"
+    notify: Restart apache2
+ 
+  - name: Start Service Apache2 and enable
+    service:
+       name=apache2
+       state=started
+       enabled=yes
+
+  handlers:
+  - name: Restart apache2
+    service:
+       name=apache2
+       state=started
